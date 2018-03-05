@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    View
-  } from 'react-native';
-  
+import { AppRegistry,  AsyncStorage,Platform, StatusBar,  StyleSheet, View, Image,Dimensions, ActivityIndicator} from 'react-native';
 
+import { Thumbnail, Container, Footer, FooterTab,Content, Form, Item, Input, Label, Button, Icon, Text, Drawer,
+  StyleProvider, Header, Left, Right,Body,Title, Toast
+} from 'native-base';
+
+import { Actions,ActionConst } from 'react-native-router-flux';
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
       'Cmd+D or shake for dev menu',
@@ -19,17 +18,28 @@ export default class Scan extends Component  {
     
     render() {
         return(
-            <View style={styles.container}>
-                <Text style={styles.welcome}>
-                Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit App.js
-                </Text>
-                <Text style={styles.instructions}>
-                {instructions}
-                </Text>
-          </View>
+          <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='menu' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content />
+        <Footer>
+          <FooterTab>
+            <Button full>
+              <Text>Footer</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
+           
         )
     }
 }

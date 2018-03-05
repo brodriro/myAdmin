@@ -12,7 +12,7 @@ import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/material'; 
 
 import Scan from './app/views/scan';
-
+import Main from './app/views/main'
 
 nextScene="";
 
@@ -30,9 +30,9 @@ export default class App extends Component{
 
       <StyleProvider  style={getTheme(material)}>          
         <Main>
-          <Router createReducer={reducerCreate}>
+          <Router createReducer={reducerCreate} >
             <Scene key="root">
-              <Scene key="scan" component={Scan} initial={true}/>          
+              <Scene key="scan" component={Scan} hideNavBar initial={true}/>          
             </Scene>
           </Router>
         </Main>
