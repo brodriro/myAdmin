@@ -4,55 +4,42 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, { Component,Drawer} from 'react';
+import { StackNavigator } from 'react-navigation';
+import {Scene, Router, ActionConst, Reducer} from 'react-native-router-flux';
+import { StyleProvider } from 'native-base';
+import getTheme from './native-base-theme/components';   
+import material from './native-base-theme/variables/material'; 
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Scan from './app/views/scan';
 
-type Props = {};
-export default class App extends Component<Props> {
+
+nextScene="";
+
+const reducerCreate = params => {
+  const defaultReducer = Reducer(params);
+  return (state, action) => {
+    if (action.scene) nextScene = action.scene.name;
+    //ConfigActions.setCurrentRoute(action.scene.name);
+    return defaultReducer(state, action);
+  }
+}
+export default class App extends Component{
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+
+      <StyleProvider  style={getTheme(material)}>          
+        <Main>
+          <Router createReducer={reducerCreate}>
+            <Scene key="root">
+              <Scene key="scan" component={Scan} initial={true}/>          
+            </Scene>
+          </Router>
+        </Main>
+        
+      </StyleProvider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
