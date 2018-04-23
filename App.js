@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component,Drawer} from 'react';
 import { StackNavigator } from 'react-navigation';
 import {Scene, Router, ActionConst, Reducer} from 'react-native-router-flux';
